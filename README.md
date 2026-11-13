@@ -7,12 +7,26 @@
 - [x] 确认上游仓库与目录：`cursor/plugins/pstack`
 - [x] 记录本次研究基线：上游 `main`，插件版本以 `plugin.json` 为准
 - [x] 建立架构、协作、Eval、原则的首批研究文档
-- [ ] 完成全部用户指南逐篇解读
+- [x] 完成 10 篇用户指南中文解读（初版）
 - [ ] 完成 61 个 Skill 的目录级盘点与逐项分析
 - [ ] 完成 23 个 Playbook 的逐项分析
 - [ ] 完成 24 条工程原则的逐项分析
 - [ ] 分析脚本、测试语料、自动化和适配器
 - [ ] 建立上游变更追踪流程
+
+### 已完成的中文指南
+
+- [指南索引](translations/guide/README.md)
+- [01 安装与配置](translations/guide/01-setup.md)
+- [02 Poteto Mode 路由任务](translations/guide/02-poteto-mode.md)
+- [03 理解代码](translations/guide/03-understand.md)
+- [04 设计](translations/guide/04-design.md)
+- [05 实现与清理](translations/guide/05-build-and-clean.md)
+- [06 验证与交付](translations/guide/06-verify-and-ship.md)
+- [07 自主运行](translations/guide/07-overnight.md)
+- [08 工程原则](translations/guide/08-principles.md)
+- [09 定制工作流](translations/guide/09-make-it-yours.md)
+- [10 配方与陷阱](translations/guide/10-recipes-and-pitfalls.md)
 
 ## 研究范围与口径
 
