@@ -60,7 +60,7 @@ Reflect 不是自动把对话复制进 Skill。它先多视角提取候选，再
 
 - patterns.md：提供 Branded Types、判别联合、构造性类型、NonEmpty、时间范围建模、边界验证和简单全类型等代码示例。
 
-### Why（15）
+### Why（12）
 
 - epistemics.md：把历史动机证据分为 Direct、Supported、Inferred、Speculative、Unknown 五级，明确每级的措辞和引用要求。
 - investigator-prompt.md：每个调查者只负责一种证据来源，记录搜索词、完整阅读引用内容、原文摘录和未查到的内容；禁止跨来源追踪造成重复工作。
