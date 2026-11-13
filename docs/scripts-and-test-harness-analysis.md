@@ -209,6 +209,17 @@ statechart/scripts/package.json 使用 Node 测试运行器和 fast-check；Pote
 
 这套测试的价值在于同时验证“模型是否正确运行”“解析器是否忠实理解 TLC 输出”“图是否忠实表达模型”和“渲染器是否能显示”。单测通过并不足以替代完整端到端验证。
 
+
+### 3.8 测试 Harness 辅助程序
+
+- test/java.ts：既能启动真实 TLC，也能从已保存 Corpus 回放 TLC 输出；可同时记录 Tool Mode 与 Plain Mode 输出，规范化随机 Tag、PID、时间戳和运行时长，保证可重复 Diff。
+- test/labels.ts：生成包含 Mermaid 保留字、HTML、Markdown、Unicode、控制字符、特殊括号、TLA+ 符号和危险标签的随机状态 / 动作 / Region / Color 数据，供渲染器差分测试。
+- test/ConfigOracle.java：直接调用 TLC 的 ModelConfig 解析器，将内部配置表序列化为 JSON。它还显式重置 TLC Parser 的静态嵌套注释计数，避免一个畸形配置污染同一 JVM 中后续配置的解析。
+- test/tlc.ts：直接运行 TLC 单独检查各条规则，和 Statechart CLI 结果比较，确保某条规则先失败时，不会被后续规则求值错误或检查顺序掩盖。
+- watch-pr/fakes.test-helper.ts：构造可控的 GitHubReader Fake，记录调用顺序，模拟 Checks、Rollup 分页、Review Thread 分页和 PR 状态；策略测试不需要访问真实 GitHub。
+- watch-pr/types.compile.ts：用 TypeScript 编译期负例证明 READY 必须携带正向证据，BLOCKED + Failing Rollup 不可能被建模成 Allowed / CI Clean，错误 Exit Code 也不能伪装成 READY。
+- poteto-mode/scripts/bootstrap.ts：按 package.json + bun.lock 的 SHA256 计算安装 Key；依赖或 Lockfile 变化才执行 frozen install，安装后重启原命令，避免每次启动重复安装。
+
 ## 4. 代码实现审计得到的共性
 
 1. **状态先建模：** Watcher 用判别联合表达 CI / PR 状态；Statechart 用 IR 表达模型结果。
