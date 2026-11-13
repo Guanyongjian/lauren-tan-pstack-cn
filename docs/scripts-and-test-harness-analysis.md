@@ -122,6 +122,47 @@ statechart/scripts/package.json 使用 Node 测试运行器和 fast-check；Pote
 
 **迁移建议：** 对 BMC 的 IPMBETH、跨板 RPC、配置同步、状态迁移等有并发和时序风险的功能，可以用小型 TLA+ 模型表达不变量和动作顺序，再把反例转换为真实设备复现或自动化测试。模型通过只证明模型范围和假设，不等于整个 BMC 产品已经正确。
 
+
+### 3.4 Statechart Corpus 的 33 个模型案例
+
+固定快照中，Corpus 目录有 33 个独立案例目录（目录内共有 356 个文件，包含 TLA+ 模型、TLC 配置、运行输出、Mermaid / DOT 图、报告和退出码快照）：
+
+- Counter
+- CounterAction
+- CounterDeadlock
+- CounterFan
+- CounterGuard
+- CounterInitPast
+- CounterInitPastHolds
+- CounterInstance
+- CounterJump
+- CounterLoop
+- CounterOrder
+- CounterRules
+- CounterStart
+- CounterStop
+- CounterTie
+- CounterTieInGraph
+- CounterView
+- DieHard
+- FirstRule
+- HiddenClock
+- Login
+- LoginGuarded
+- LoginParallel
+- MediaPlayer
+- MediaPlayerFixed
+- MediaPlayerProps
+- PickWorker
+- Shadow
+- SpacedNames
+- TwoPhase
+- TwoPhaseFixed
+- TypeGuard
+- UserNoDeadlock
+
+这些名称显示覆盖了计数器、Action / Guard、死锁、初始化、实例、循环、顺序、并行、视图、登录流程、媒体播放器、两阶段流程、类型守卫等模型场景。具体每个案例的性质和反例应以对应 TLA+ 文件、CFG、Report 和 TLC 输出为准，不能只按名称推断。
+
 ## 4. 代码实现审计得到的共性
 
 1. **状态先建模：** Watcher 用判别联合表达 CI / PR 状态；Statechart 用 IR 表达模型结果。
