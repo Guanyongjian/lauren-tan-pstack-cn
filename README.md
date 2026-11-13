@@ -11,9 +11,10 @@
 - [x] 完成 Poteto Mode 主调度规则分析
 - [x] 建立 23 个 Playbook 路由目录
 - [x] 完成 23 个 Playbook 的逐篇文本研究
+- [x] 完成 24 条工程原则逐项研究
+- [x] 盘点固定快照中的 58 个 Skill 主文件
+- [ ] 完成 34 个通用 Skill 的引用资源与实现级审计
 - [ ] 审计 Playbook 配套 References、Scripts、Harness 和 Tests
-- [ ] 完成 61 个 Skill 的逐项分析
-- [ ] 完成 24 条工程原则的逐项分析
 - [ ] 分析脚本、测试语料、自动化和适配器
 - [ ] 建立上游变更追踪流程
 
