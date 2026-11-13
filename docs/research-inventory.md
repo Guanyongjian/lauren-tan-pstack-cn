@@ -36,7 +36,7 @@
 | Principles | 24 | 24/24 主文件逐项研究完成，引用资源待交叉核验 |
 | Agents | 2 | 2/2 主文件已深读，角色与权限边界已记录 |
 | Automations | 12 | Benny 主流程、配置和 Prompt 模板已研究；引用文件和实际运行待核验 |
-| Scripts / test corpus | 424 / 356 | 待按调用链和测试用途分析 |
+| Scripts / test corpus | 424 / 356 | 主要工具入口和代表性测试已审计；全量脚本逐行审计及全部测试运行待完成 |
 
 ### 已深读的 Playbook（23）
 
