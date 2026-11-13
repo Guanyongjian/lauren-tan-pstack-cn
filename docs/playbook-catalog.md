@@ -158,23 +158,25 @@ Playbook 是任务类型对应的可执行流程。主 Skill 负责判断“当�
 
 **分析：** 它把“代码版本”和“验证结论”绑定起来。PR 新 Push 后，旧验证结果不能无条件复用。这是工作台需要实现的核心审计能力之一。
 
-## 4. 已识别但尚未逐篇深读的 Playbook
+## 4. 第三批深读：剩余 11 个 Playbook
 
-以下条目当前只完成路由级盘点，后续要读取完整文件并补齐步骤、异常分支和工具依赖。
+详细分析见 [Playbook 深度研究（三）：剩余 11 个流程](playbook-remaining-11-analysis.md)。
 
-| Playbook | 下一步重点 |
-|---|---|
-| runtime-forensics | 现场诊断工具、采样和结论边界 |
-| trace-forensics | 捕获文件解析、热点归因和证据 |
-| prototype | 实验如何回答经验问题，如何清理一次性产物 |
-| visual-parity | 截图基线、像素 Diff 和误差阈值 |
-| eval | 候选盲化、Judge、评分标准与防观察者效应 |
-| authoring-a-skill | Skill 文件校验、链接检查和交付步骤 |
-| opening-a-pr | Commit 整理、PR 描述和证据要求 |
-| autopilot-stack | 不合并模式下的 PR 依赖与交接 |
-| pause-safely | 当前步骤如何安全结束、保存检查点 |
-| session-pickup | 从 Transcript、分支或云端会话恢复状态 |
-| worktree-cleanup | 如何识别可安全清理的 Worktree 和 Simulator |
+本轮覆盖：
+
+- **Autopilot-stack**：复用 Autopilot-full，但停止在全部 PR 当前 Head 已验证且 CI 绿色；交接后未经操作者授权不得 Push。
+- **Runtime forensics**：对活进程采集 CPU Profile、Heap Snapshot、CDP Trace 等，验证机制并映射回源码；只交付诊断。
+- **Trace forensics**：把已有捕获转换为可查询数据，分析热点、Retainer Chain 和线程等待，并区分已确认因果与假设。
+- **Prototype**：通过隔离的一次性原型回答具体设计决策，不把原型当生产实现。
+- **Visual parity**：冻结视觉基线，逐组件迁移，以图像 Diff 验证，不允许修改基线迎合结果。
+- **Eval**：候选盲化、自然任务提示、不同模型并行、不同模型家族 Judge、Transcript 复核。
+- **Authoring a skill**：校验 Frontmatter、引用、链接和结构性测试；Skill 内容只保留会改变决策的规则。
+- **Opening a PR**：Worktree 隔离、有序提交、规范化 PR 描述、统一 Forge 和依赖栈管理。
+- **Pause safely**：只在明确暂停请求时安全停止，保存 WIP Commit 和冷启动恢复说明。
+- **Session pickup**：从权威 Transcript / 分支恢复状态，区分已完成与待办，避免重复工作。
+- **Worktree cleanup**：审计、Pinned / 活跃会话核对、未提交改动确认后再删除；清理默认需要人工授权。
+
+至此，23 个 Playbook 的逐篇文本研究已完成。工具脚本和测试实现仍需后续代码级审计。
 
 ## 5. 第二批深读：PR 生命周期与质量改进
 
@@ -190,9 +192,7 @@ Playbook 是任务类型对应的可执行流程。主 Skill 负责判断“当�
 
 ### 已深读数量更新
 
-当前已深读 12 个：Feature、Investigation、Bug fix、Autonomous run、Orchestrate、Autopilot-full、Multi-phase plan、Babysit、Shipping、Refactoring、Perf issue、Hillclimb。
-
-仍待深读 11 个：Runtime forensics、Trace forensics、Prototype、Visual parity、Eval、Authoring a skill、Opening a PR、Autopilot-stack、Pause safely、Session pickup、Worktree cleanup。
+当前 23 个 Playbook 均已逐篇深读。专题文档分别见 [PR 生命周期与质量改进](playbook-pr-lifecycle-and-quality.md) 和 [剩余 11 个流程](playbook-remaining-11-analysis.md)。
 
 ## 6. 面向本地多模型工作台的总体判断
 
@@ -211,5 +211,5 @@ Playbook 是任务类型对应的可执行流程。主 Skill 负责判断“当�
 
 - 已从上游主 Skill 确认 23 个 Playbook 的名称和任务路由。
 - 已深读 Feature、Investigation、Bug Fix、Autonomous Run、Orchestrate、Autopilot-full、Multi-phase Plan、Babysit、Shipping、Refactoring、Perf issue、Hillclimb。
-- 其余 11 个 Playbook 仍是目录级初步分析，不能视为逐篇完成。
+- 23 个 Playbook 的文本研究均已完成；配套 Scripts、References、Harness 和 Tests 尚未全部审计。
 - 后续更新应在每篇补充上游版本、执行步骤、分支条件、证据、失败路径和迁移建议。
