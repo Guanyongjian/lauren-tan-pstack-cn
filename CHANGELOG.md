@@ -30,3 +30,5 @@
 - 补齐 Benny 的 Control Adapter、Feature Map、Verify Existing Fix、Routing Map 四个引用文件，完成自动化包 12/12 文件文本研究。
 
 - 新增元工作流研究，分析 Figure It Out、Setup P-Stack、Automate Me、Reflect、Correct 及其长期学习闭环。
+
+- 新增 Codex 多模型工作台目标架构设计，将 P-Stack 的 Playbook、角色路由、Worktree、Evidence、Approval、Provider Adapter 和本地优先部署映射为可实施架构。
