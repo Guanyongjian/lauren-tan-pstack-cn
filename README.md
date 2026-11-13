@@ -10,8 +10,8 @@
 - [x] 完成 10 篇用户指南中文解读初版
 - [x] 完成 Poteto Mode 主调度规则分析
 - [x] 建立 23 个 Playbook 路由目录
-- [x] 深读 12 个 Playbook（其中本轮新增 5 个）
-- [ ] 完成剩余 11 个 Playbook 的逐项分析
+- [x] 完成 23 个 Playbook 的逐篇文本研究
+- [ ] 审计 Playbook 配套 References、Scripts、Harness 和 Tests
 - [ ] 完成 61 个 Skill 的逐项分析
 - [ ] 完成 24 条工程原则的逐项分析
 - [ ] 分析脚本、测试语料、自动化和适配器
