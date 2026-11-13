@@ -16,46 +16,46 @@ Skill 数量不等于独立能力数量：一些 Skill 是任务流程入口，�
 ## 2. 34 个通用 Skill 分类
 
 状态定义：
-- **深读**：已读取主文件并整理其关键流程 / 约束；
-- **目录盘点**：已从文件树确认存在和位置，尚未完成完整主文件与引用资源审计；
+- **主文件已读，引用待审计**：已读取主文件或关键章节，目录级用途已整理；引用资源、模板、脚本和实际运行仍需核验。
+- **目录盘点**：仅确认路径和名称，尚未读取主文件。
 - **待验证**：需要结合脚本、模板、实际运行或宿主工具进一步验证。
 
 | 分类 | Skill | 主要职责 | 当前状态 |
 |---|---|---|---|
 | 调度与项目治理 | poteto-mode | 总调度、任务路由、角色和执行约束 | 深读，见 [Poteto Mode 分析](poteto-mode-analysis.md) |
-| 调度与项目治理 | figure-it-out | 为没有现成流程的大型任务设计可审计 Playbook | 深读 |
-| 调度与项目治理 | setup-pstack | 按角色配置模型与推理预算 | 深读 |
-| 调度与项目治理 | automate-me | 从用户工作习惯生成个人 Mode Skill | 深读 |
-| 调度与项目治理 | poteto-help | 帮助用户选择 Skill / Playbook 并给出启动提示词 | 深读 |
+| 调度与项目治理 | figure-it-out | 为没有现成流程的大型任务设计可审计 Playbook | 主文件已读，引用待审计 |
+| 调度与项目治理 | setup-pstack | 按角色配置模型与推理预算 | 主文件已读，引用待审计 |
+| 调度与项目治理 | automate-me | 从用户工作习惯生成个人 Mode Skill | 主文件已读，引用待审计 |
+| 调度与项目治理 | poteto-help | 帮助用户选择 Skill / Playbook 并给出启动提示词 | 主文件已读，引用待审计 |
 | 多 Agent 协作 | architect | 先建模和画类型 / 模块草图，再实施 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
 | 多 Agent 协作 | arena | 多模型候选竞争、交叉评审、合成最佳方案 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
 | 多 Agent 协作 | swarm | 按切片或竞争方式并行执行并汇总 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
 | 多 Agent 协作 | interrogate | 多个对抗者寻找缺陷，Finding 必须有运行证据 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
 | 理解与研究 | how | 解释代码如何工作、架构和运行流程 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
 | 理解与研究 | why | 追溯设计动机、历史约束和证据来源 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
-| 理解与研究 | recall | 从历史会话和共享记录恢复近期工作上下文 | 深读 |
-| 理解与研究 | teach | 结合 How / Why 向人解释一个系统或改动 | 深读 |
-| 理解与研究 | in-your-own-words | 复述用户目标，确认问题理解 | 深读 |
-| 理解与研究 | sharpen | 将任务做深而不是做大，并改写任务提示 | 深读 |
-| 质量与验证 | correct | 将重复出现的 Agent 错误升级为架构 / 类型 / Lint / 测试约束 | 深读 |
-| 质量与验证 | tdd | 在廉价可测场景先写失败回归测试 | 深读 |
-| 质量与验证 | benchmark-checklist | 审核性能测量是否真实、可复现、具有业务意义 | 深读 |
-| 质量与验证 | blast-radius | 找出 Diff 对系统其他部分的影响并用真实代码验证 | 深读 |
-| 质量与验证 | create-verification-skill | 为项目生成驱动真实产品并采集证据的验证 Skill | 深读 |
-| 质量与验证 | maintain-verification-skill | 按功能维护验证 Skill 与 Feature Map | 深读 |
-| 质量与验证 | create-formal-verification-skill | 为高风险状态 / 并发 / 协议生成形式化验证流程 | 深读 |
-| 质量与验证 | maintain-formal-verification-skill | 代码变化后同步模型、性质和验证脚本 | 深读 |
-| 质量与验证 | statechart | 用 TLA+ / TLC 检查状态模型并生成 Mermaid 状态图 | 深读 |
-| 质量与验证 | reflect | 从会话提炼可复用经验，提议更新 Skill | 深读 |
-| 决策记录 | show-me-your-work | 用追加式 TSV 记录决策、理由、证据和结果 | 深读 |
-| 写作与表达 | technical-writing | 按 Diátaxis、Google / STE 等规则写技术文档 | 深读 |
-| 写作与表达 | unslop | 删除 AI 腔、空话、虚假归因和冗余表达 | 深读 |
-| 写作与表达 | bro | 将上一条回复改写为朴素、无术语语言 | 深读 |
-| 写作与表达 | no-comments | 调用 Comment Sicko 审查并清理代码注释 | 深读 |
+| 理解与研究 | recall | 从历史会话和共享记录恢复近期工作上下文 | 主文件已读，引用待审计 |
+| 理解与研究 | teach | 结合 How / Why 向人解释一个系统或改动 | 主文件已读，引用待审计 |
+| 理解与研究 | in-your-own-words | 复述用户目标，确认问题理解 | 主文件已读，引用待审计 |
+| 理解与研究 | sharpen | 将任务做深而不是做大，并改写任务提示 | 主文件已读，引用待审计 |
+| 质量与验证 | correct | 将重复出现的 Agent 错误升级为架构 / 类型 / Lint / 测试约束 | 主文件已读，引用待审计 |
+| 质量与验证 | tdd | 在廉价可测场景先写失败回归测试 | 主文件已读，引用待审计 |
+| 质量与验证 | benchmark-checklist | 审核性能测量是否真实、可复现、具有业务意义 | 主文件已读，引用待审计 |
+| 质量与验证 | blast-radius | 找出 Diff 对系统其他部分的影响并用真实代码验证 | 主文件已读，引用待审计 |
+| 质量与验证 | create-verification-skill | 为项目生成驱动真实产品并采集证据的验证 Skill | 主文件已读，引用待审计 |
+| 质量与验证 | maintain-verification-skill | 按功能维护验证 Skill 与 Feature Map | 主文件已读，引用待审计 |
+| 质量与验证 | create-formal-verification-skill | 为高风险状态 / 并发 / 协议生成形式化验证流程 | 主文件已读，引用待审计 |
+| 质量与验证 | maintain-formal-verification-skill | 代码变化后同步模型、性质和验证脚本 | 主文件已读，引用待审计 |
+| 质量与验证 | statechart | 用 TLA+ / TLC 检查状态模型并生成 Mermaid 状态图 | 主文件已读，引用待审计 |
+| 质量与验证 | reflect | 从会话提炼可复用经验，提议更新 Skill | 主文件已读，引用待审计 |
+| 决策记录 | show-me-your-work | 用追加式 TSV 记录决策、理由、证据和结果 | 主文件已读，引用待审计 |
+| 写作与表达 | technical-writing | 按 Diátaxis、Google / STE 等规则写技术文档 | 主文件已读，引用待审计 |
+| 写作与表达 | unslop | 删除 AI 腔、空话、虚假归因和冗余表达 | 主文件已读，引用待审计 |
+| 写作与表达 | bro | 将上一条回复改写为朴素、无术语语言 | 主文件已读，引用待审计 |
+| 写作与表达 | no-comments | 调用 Comment Sicko 审查并清理代码注释 | 主文件已读，引用待审计 |
 | 可视化与交互 | make-bot-ui | 创建通过 Webhook 唤醒 Bot 的本地 UI | 深读，需按宿主环境核验 |
-| 可视化与交互 | ketchup | 以简短可视内容向用户汇报会话变化和待决事项 | 深读 |
-| 可视化与交互 | ketchup-video | 将会话进展制作成短字幕视频 | 深读 |
-| 项目专用规范 | typescript-best-practices | TypeScript 类型建模、边界解析和测试规范 | 深读 |
+| 可视化与交互 | ketchup | 以简短可视内容向用户汇报会话变化和待决事项 | 主文件已读，引用待审计 |
+| 可视化与交互 | ketchup-video | 将会话进展制作成短字幕视频 | 主文件已读，引用待审计 |
+| 项目专用规范 | typescript-best-practices | TypeScript 类型建模、边界解析和测试规范 | 主文件已读，引用待审计 |
 
 ## 3. 已深读的关键 Skill 及其作用边界
 
