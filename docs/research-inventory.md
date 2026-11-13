@@ -97,3 +97,7 @@
 - [上游 Guide](https://github.com/cursor/plugins/tree/main/pstack/docs/guide)
 - [上游 Agents](https://github.com/cursor/plugins/tree/main/pstack/agents)
 - [上游 Automations](https://github.com/cursor/plugins/tree/main/pstack/automations)
+
+## 7. 研究转化产物
+
+- [Codex 多模型工作台目标架构](codex-multimodel-workbench-architecture.md)：基于 P-Stack 研究形成的二次设计，不属于上游事实。
