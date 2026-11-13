@@ -32,3 +32,5 @@
 - 新增元工作流研究，分析 Figure It Out、Setup P-Stack、Automate Me、Reflect、Correct 及其长期学习闭环。
 
 - 新增 Codex 多模型工作台目标架构设计，将 P-Stack 的 Playbook、角色路由、Worktree、Evidence、Approval、Provider Adapter 和本地优先部署映射为可实施架构。
+
+- 新增 P-Stack 全量研究阶段性完成报告，汇总 573 个文件、23 个 Playbook、58 个 Skill、24 条原则、30 个 Reference、2 个 Agent、12 个 Automation 文件、代码与测试资产的覆盖状态，并明确尚未执行的运行验证。
