@@ -12,6 +12,8 @@
 - 深读 Feature、Investigation、Bug Fix、Autonomous Run、Orchestrate、Autopilot-full、Multi-phase Plan。
 - 本轮新增深读 Babysit、Shipping、Refactoring、Perf issue、Hillclimb。
 - 新增 PR 生命周期与质量改进专题，分析 merge frontier、独立验证、Patch identity、行为基线和持续性能实验。
-- 更新 README、Playbook 目录和研究进度。Autopilot-stack 因上游读取限流仍待深读，不计入已完成项。
+- 通过上游 Git tree + blob 快照读取补齐 Autopilot-stack 及最后 10 个 Playbook，绕开 Contents API 限流。
+- 新增剩余 11 个 Playbook 专题文档，覆盖 Autopilot-stack、Runtime forensics、Trace forensics、Prototype、Visual parity、Eval、Authoring a skill、Opening a PR、Pause safely、Session pickup、Worktree cleanup。
+- 更新 Playbook 总表、README 和研究进度：23/23 个 Playbook 的文本研究完成；配套 Scripts、References、Harness、Tests 仍需代码级审计。
 
 后续每次更新应记录上游 SHA、文件变化、中文文档变化及待复核事项。
