@@ -1,0 +1,107 @@
+# P-Stack Skills 全量目录与研究状态
+
+> 上游 Git tree：`24621dbcc59e205a7faadb0e06d540f91712b5cc`  
+> 来源目录：[pstack/skills](https://github.com/cursor/plugins/tree/main/pstack/skills)
+
+## 1. 统计口径说明
+
+对该 Git tree 做递归目录盘点，发现 `pstack/skills/` 下共有 **58 个 SKILL.md**：
+- 34 个通用 / 工作流 Skill；
+- 24 个 `principle-*` Skill。
+
+此前研究清单记录的 61 是较早快照统计，和本轮固定 Git tree 的实际数量不一致。后续以本文件标注的 Git tree SHA 为本轮研究基线，不将旧统计混用。
+
+Skill 数量不等于独立能力数量：一些 Skill 是任务流程入口，一些是底层协作原语，一些是写作或项目专用工具，还有一些是原则约束。
+
+## 2. 34 个通用 Skill 分类
+
+状态定义：
+- **深读**：已读取主文件并整理其关键流程 / 约束；
+- **目录盘点**：已从文件树确认存在和位置，尚未完成完整主文件与引用资源审计；
+- **待验证**：需要结合脚本、模板、实际运行或宿主工具进一步验证。
+
+| 分类 | Skill | 主要职责 | 当前状态 |
+|---|---|---|---|
+| 调度与项目治理 | poteto-mode | 总调度、任务路由、角色和执行约束 | 深读，见 [Poteto Mode 分析](poteto-mode-analysis.md) |
+| 调度与项目治理 | figure-it-out | 为没有现成流程的大型任务设计可审计 Playbook | 深读 |
+| 调度与项目治理 | setup-pstack | 按角色配置模型与推理预算 | 深读 |
+| 调度与项目治理 | automate-me | 从用户工作习惯生成个人 Mode Skill | 深读 |
+| 调度与项目治理 | poteto-help | 帮助用户选择 Skill / Playbook 并给出启动提示词 | 深读 |
+| 多 Agent 协作 | architect | 先建模和画类型 / 模块草图，再实施 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
+| 多 Agent 协作 | arena | 多模型候选竞争、交叉评审、合成最佳方案 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
+| 多 Agent 协作 | swarm | 按切片或竞争方式并行执行并汇总 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
+| 多 Agent 协作 | interrogate | 多个对抗者寻找缺陷，Finding 必须有运行证据 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
+| 理解与研究 | how | 解释代码如何工作、架构和运行流程 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
+| 理解与研究 | why | 追溯设计动机、历史约束和证据来源 | 深读，见 [协作机制分析](agent-collaboration-deep-dive.md) |
+| 理解与研究 | recall | 从历史会话和共享记录恢复近期工作上下文 | 深读 |
+| 理解与研究 | teach | 结合 How / Why 向人解释一个系统或改动 | 深读 |
+| 理解与研究 | in-your-own-words | 复述用户目标，确认问题理解 | 深读 |
+| 理解与研究 | sharpen | 将任务做深而不是做大，并改写任务提示 | 深读 |
+| 质量与验证 | correct | 将重复出现的 Agent 错误升级为架构 / 类型 / Lint / 测试约束 | 深读 |
+| 质量与验证 | tdd | 在廉价可测场景先写失败回归测试 | 深读 |
+| 质量与验证 | benchmark-checklist | 审核性能测量是否真实、可复现、具有业务意义 | 深读 |
+| 质量与验证 | blast-radius | 找出 Diff 对系统其他部分的影响并用真实代码验证 | 深读 |
+| 质量与验证 | create-verification-skill | 为项目生成驱动真实产品并采集证据的验证 Skill | 深读 |
+| 质量与验证 | maintain-verification-skill | 按功能维护验证 Skill 与 Feature Map | 深读 |
+| 质量与验证 | create-formal-verification-skill | 为高风险状态 / 并发 / 协议生成形式化验证流程 | 深读 |
+| 质量与验证 | maintain-formal-verification-skill | 代码变化后同步模型、性质和验证脚本 | 深读 |
+| 质量与验证 | statechart | 用 TLA+ / TLC 检查状态模型并生成 Mermaid 状态图 | 深读 |
+| 质量与验证 | reflect | 从会话提炼可复用经验，提议更新 Skill | 深读 |
+| 决策记录 | show-me-your-work | 用追加式 TSV 记录决策、理由、证据和结果 | 深读 |
+| 写作与表达 | technical-writing | 按 Diátaxis、Google / STE 等规则写技术文档 | 深读 |
+| 写作与表达 | unslop | 删除 AI 腔、空话、虚假归因和冗余表达 | 深读 |
+| 写作与表达 | bro | 将上一条回复改写为朴素、无术语语言 | 深读 |
+| 写作与表达 | no-comments | 调用 Comment Sicko 审查并清理代码注释 | 深读 |
+| 可视化与交互 | make-bot-ui | 创建通过 Webhook 唤醒 Bot 的本地 UI | 深读，需按宿主环境核验 |
+| 可视化与交互 | ketchup | 以简短可视内容向用户汇报会话变化和待决事项 | 深读 |
+| 可视化与交互 | ketchup-video | 将会话进展制作成短字幕视频 | 深读 |
+| 项目专用规范 | typescript-best-practices | TypeScript 类型建模、边界解析和测试规范 | 深读 |
+
+## 3. 已深读的关键 Skill 及其作用边界
+
+### 3.1 Architect / Arena / Swarm / Interrogate
+
+四者不是同一种并行：
+- Architect 用于形成设计形状，内部调用 Arena；
+- Arena 比较同一任务的不同候选并合成；
+- Swarm 确保独立切片或多个候选都得到结果；
+- Interrogate 专门找可复现的缺陷，不负责修复。
+
+详细见 [核心 Agent 协作 Skills 深度研究](agent-collaboration-deep-dive.md)。
+
+### 3.2 How / Why / Teach / Recall
+
+- How 解释当前代码如何工作；
+- Why 追溯形成当前设计的证据和动机；
+- Teach 将 How / Why 的结果改写成循序渐进的教学；
+- Recall 从当前工作区历史和共享工程记录恢复工作状态。
+
+### 3.3 验证体系
+
+P-Stack 不只依赖单元测试：
+- TDD 锁定可低成本复现的缺陷；
+- Verification Skill 驱动真实应用，观察用户可见行为；
+- Formal Verification 用模型检查或代码级工具覆盖测试难触达的状态空间；
+- Maintain Skills 在代码变化后检查验证描述是否漂移；
+- Benchmark Checklist 审核测量有效性；
+- Blast Radius 审查 Diff 之外的影响。
+
+### 3.4 工作记录与纠错
+
+- Show me your work：追加式决策记录，证据指向 Commit / PR / Artifact；
+- Reflect：提炼会话中的长期经验，但修改 Skill 前必须经过用户批准；
+- Correct：重复错误优先通过架构、类型、Lint 和测试消除，而不是只加文档；
+- Unslop / Technical writing：分别处理语言质量和技术文档结构。
+
+## 4. 研究覆盖边界
+
+本轮 58 个 Skill 主文件路径已完成固定快照盘点；24 个原则 Skill 已逐项分析，关键协作和验证 Skill 已深读。此目录表不代表所有 Skill 的引用文件都已审计。
+
+仍需逐项读取和交叉核验：
+- 34 个通用 Skill 的完整引用目录；
+- 各 Skill 的 Runner Prompt、Reference、Template、脚本和示例；
+- 与 Cursor Task、MCP、Cloud Agent、控制面绑定的宿主能力；
+- 不同 Harness（Claude Code 等）下的适配差异；
+- 实际运行结果和测试覆盖。
+
+尤其注意：Skill 写明某个 Cursor 专属工具，不代表 Codex CLI 中存在同名或等价能力。迁移时要拆分“工作流意图”和“宿主工具实现”。
