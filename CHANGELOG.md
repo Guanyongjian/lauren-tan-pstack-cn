@@ -28,3 +28,5 @@
 - 新增 30 个 Reference 文件职责盘点及 Claude Code Harness 迁移分析，审阅 Adapter、自动生成脚本、工具映射、Cursor-only 能力降级和 Codex 迁移建议。
 
 - 补齐 Benny 的 Control Adapter、Feature Map、Verify Existing Fix、Routing Map 四个引用文件，完成自动化包 12/12 文件文本研究。
+
+- 新增元工作流研究，分析 Figure It Out、Setup P-Stack、Automate Me、Reflect、Correct 及其长期学习闭环。
