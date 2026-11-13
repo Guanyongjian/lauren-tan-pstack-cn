@@ -143,3 +143,64 @@ Benny 的先复现、再修复、再验证可以应用到 BMC 现场问题：从
 ## 7. 研究边界
 
 本轮已阅读两个 Agent 定义、Benny 的入口说明、两个主要操作 Skill、Setup Skill、配置模板和 Automation Prompt 模板。Control Adapter、Feature Map、Routing Example、Verify Existing Fix 等引用文件仍需继续逐一读取并核验细节。本文不将这些主文件描述等同于已运行验证。
+## 8. Benny 引用文件补充研究
+
+本轮继续读取了剩余 4 个 Reference，至此 Benny 目录的 12 个文件均已阅读。
+
+### 8.1 Control Adapter 契约
+
+上游：[control-adapter.md](https://github.com/cursor/plugins/blob/main/pstack/automations/benny/skills/reproduce-and-fix-issues/references/control-adapter.md)
+
+Benny 不内置每种应用的启动和控制方式，而是要求用户配置 Control Skill / Adapter。它必须提供：
+- Bring up：指定仓库、Revision、环境、Fixture、Feature Flag 启动目标应用，并确认应用身份；
+- Drive UI：真实点击、输入、按键、滚动、拖拽、导航；优先稳定语义选择器；
+- Drive mapped features：按 Feature Map 导航、安排安全前置状态、复位、重复复现；
+- Inspect state：只读检查 ARIA / DOM / 进程 / 日志 / 网络状态；
+- Screenshot / Recording：带应用身份、时间和目标状态的图像与视频；
+- Cleanup：停止本次创建的进程、测试账号、Profile、端口和临时工件，不能删除用户数据。
+
+必须在启用自动化前完成一次无害的 9 步适配器检查。任何必需能力缺失或不确定时，复现 / 修复流程必须 Fail Closed。
+
+### 8.2 Feature Map 是用户行为规格，不是内部实现文档
+
+上游：[feature-map.example.md](https://github.com/cursor/plugins/blob/main/pstack/automations/benny/skills/reproduce-and-fix-issues/references/feature-map.example.md)
+
+每个 Feature 条目必须写清用户入口、Control Adapter Action、稳定选择器、需要覆盖的状态、前置条件、截图 / 视频 / 只读交叉验证和陷阱。禁止将生成 CSS 类、动态 Hash、子节点序号或脆弱 DOM 位置当作稳定定位。
+
+### 8.3 Verify Existing Fix：验证已有修复，不抢写
+
+上游：[verify-existing-fix.md](https://github.com/cursor/plugins/blob/main/pstack/automations/benny/skills/reproduce-and-fix-issues/references/verify-existing-fix.md)
+
+需要一个具体 PR 或 Commit，单纯声称有人修复不够。对同一问题：
+1. 记录基线 Revision 和修复 Revision；
+2. 用同一环境和数据启动 Baseline；
+3. 真实 UI 路径重复复现两次；
+4. 用相同环境启动 Patch；
+5. 同样重复两次，确认错误状态消失且预期状态出现；
+6. 只有 Before 和 After 均有证据才能确认修复。
+
+Baseline 未复现两次，就没有可比较基线，不能声称修复有效。已有修复不充分时也不能开竞争 PR。
+
+### 8.4 Routing Map：路由需要多证据匹配
+
+上游：[routing.example.md](https://github.com/cursor/plugins/blob/main/pstack/automations/benny/skills/triage-issue-reports/references/routing.example.md)
+
+路由依据产品领域、代码路径、错误签名等结构化字段。关键是原因追踪后才选择责任团队，不能只按用户报告中的关键词匹配。默认不跨频道转发、不自动 @ 人；Ping 策略需要显式配置和受限允许名单。
+
+### 8.5 Benny 的完整门禁链
+
+补齐引用后，Benny 的安全机制可以归纳为：
+
+```text
+可信事件身份
+  -> 冻结事件坐标
+  -> 只读收集上下文
+  -> 原因追踪与路由
+  -> 查重与所有权检查
+  -> 真实 UI 双次复现
+  -> 同环境 Baseline / Patch 双次验证
+  -> 有界修复
+  -> Draft PR
+```
+
+这个流程比“让 Agent 读取 Slack 消息然后改代码”严格得多。所有外部副作用都被拆成独立门禁，并且缺失能力时默认不做。
