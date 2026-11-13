@@ -32,13 +32,13 @@
 |---|---:|---|
 | Guide | 10 篇用户指南 | 中文解读初版已完成，需持续校对 |
 | Skills | 61 | 已抽样，待全量分析 |
-| Playbooks | 23 | 路由目录已完成；12 个深读，11 个待深读 |
+| Playbooks | 23 | 23/23 已逐篇完成文本研究；配套脚本与测试待代码级审计 |
 | Principles | 24 | 已建立总览，待逐项分析 |
 | Agents | 2 | 已抽样阅读 |
 | Automations | 12 | 待分析 |
 | Scripts / test corpus | 424 / 356 | 待按调用链和测试用途分析 |
 
-### 已深读的 Playbook（12）
+### 已深读的 Playbook（23）
 
 - Feature
 - Investigation
@@ -52,9 +52,6 @@
 - Refactoring
 - Perf issue
 - Hillclimb
-
-### 待深读的 Playbook（11）
-
 - Runtime forensics
 - Trace forensics
 - Prototype
@@ -66,6 +63,8 @@
 - Pause safely
 - Session pickup
 - Worktree cleanup
+
+23 个 Playbook 的文本分析已完成。配套 References、Scripts、Harness、Tests 尚未完成代码级审计。
 
 ## 3. 研究完成定义
 
