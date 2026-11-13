@@ -2,10 +2,10 @@
 
 ## 1. 统计基线
 
-本次基于上游仓库某一 commit 的递归 Git tree 统计，研究目录为 `pstack/`。
+本次初始统计基于上游仓库某一 commit 的递归 Git tree，研究目录为 `pstack/`。
 
-- Git tree：`6e359ce0aba9e927914d8a940510aa2ef66a8f23`
-- 插件版本字段：`0.15.36`
+- 初始 Git tree：`6e359ce0aba9e927914d8a940510aa2ef66a8f23`
+- 初始插件版本字段：`0.15.36`
 - 文件总数：573
 - Skill 主文件（`SKILL.md`）：61
 - Playbook：23
@@ -16,7 +16,18 @@
 - 脚本相关路径文件：424
 - 测试语料相关路径文件：356
 
-这些分类存在包含关系：测试语料文件包含在脚本相关路径统计中，不能将各行简单相加。统计值是本次快照，不代表上游当前状态。
+这些分类存在包含关系：测试语料文件包含在脚本相关路径统计中，不能将各行简单相加。上述数字是初始快照统计，不代表上游当前状态。
+
+### Poteto Mode 后续复核快照
+
+本轮重新读取上游递归 Git tree，得到：
+
+- Git tree：`24621dbcc59e205a7faadb0e06d540f91712b5cc`
+- Poteto Mode 主 Skill：1
+- Playbook：23
+- 配套引用、脚本和测试文件：另行纳入后续代码研究
+
+本轮没有重新计算整个 P-Stack 的文件总量和各分类数量，因此初始统计仍只作为历史基线。
 
 ## 2. 研究分类
 
@@ -38,17 +49,30 @@
 | 研究对象 | 数量 | 状态 |
 |---|---:|---|
 | README / plugin metadata | 2 | 已初读 |
-| Guide | 11 | 部分已读，待逐篇完成 |
+| Guide | 10 篇用户指南 | 中文解读初版已完成，需持续校对上游变更 |
 | Skills | 61 | 已抽样，待全量分析 |
-| Playbooks | 23 | Eval 已初读，其余待分析 |
+| Playbooks | 23 | 路由目录已完成；7 个深读，16 个待深读 |
 | Principles | 24 | 已建立总览，待逐项分析 |
 | Agents | 2 | 已抽样阅读 |
 | Automations | 12 | 待分析 |
 | Scripts / test corpus | 424 / 356 | 待按调用链和测试用途分析 |
 
+### 已深读的 Playbook
+
+- Feature
+- Investigation
+- Bug fix
+- Autonomous run
+- Orchestrate
+- Autopilot-full
+- Multi-phase plan
+
+详细内容见 [Poteto Mode 核心分析](poteto-mode-analysis.md) 和 [Playbook 目录与初步分析](playbook-catalog.md)。
+
 ## 4. 完成定义
 
 一个文件只有在以下内容齐备时才标记为“已分析”：
+
 - 上游路径和对应版本；
 - 主要目的与适用场景；
 - 输入、输出和依赖；
@@ -61,7 +85,7 @@
 
 ## 5. 推荐研究顺序
 
-1. Guide 全文：先理解作者希望用户怎样使用 P-Stack。
+1. Guide 全文：理解作者希望用户怎样使用 P-Stack。
 2. Poteto Mode 与全部 Playbooks：理解调度和端到端流程。
 3. Arena、Swarm、Interrogate、Architect：理解协作原语。
 4. Eval、Verification、TDD：理解质量闭环。
