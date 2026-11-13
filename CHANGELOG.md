@@ -22,3 +22,5 @@
 - 新增 Skills 全量目录与状态表。引用文件、脚本、测试及宿主适配器仍待审计。
 
 - 新增 Agent 与 Automation 研究文档，分析 poteto-agent、comment-sicko、Benny Slack Triage / Repro 自动化、权限边界和失败关闭机制。
+
+- 新增 Scripts 与 Test Harness 专题，审阅 watch-pr 状态机、check-plan 结构检查、worktree-audit 安全审计、TSV 决策日志和 Statechart/TLA+ 工具链。
