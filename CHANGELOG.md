@@ -20,3 +20,5 @@
 - 新增核心 Agent 协作机制深度研究，覆盖 Architect、Arena、Swarm、Interrogate、How、Why、TDD 和验证思路。
 - 对固定 Git tree 重新盘点 P-Stack Skills：当前快照为 58 个 SKILL.md，其中 34 个通用 Skill、24 个 Principle Skill；早期 61 个统计属于不同快照，已在清单中说明差异。
 - 新增 Skills 全量目录与状态表。引用文件、脚本、测试及宿主适配器仍待审计。
+
+- 新增 Agent 与 Automation 研究文档，分析 poteto-agent、comment-sicko、Benny Slack Triage / Repro 自动化、权限边界和失败关闭机制。
