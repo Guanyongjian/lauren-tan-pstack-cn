@@ -26,3 +26,5 @@
 - 新增 Scripts 与 Test Harness 专题，审阅 watch-pr 状态机、check-plan 结构检查、worktree-audit 安全审计、TSV 决策日志和 Statechart/TLA+ 工具链。
 
 - 新增 30 个 Reference 文件职责盘点及 Claude Code Harness 迁移分析，审阅 Adapter、自动生成脚本、工具映射、Cursor-only 能力降级和 Codex 迁移建议。
+
+- 补齐 Benny 的 Control Adapter、Feature Map、Verify Existing Fix、Routing Map 四个引用文件，完成自动化包 12/12 文件文本研究。
