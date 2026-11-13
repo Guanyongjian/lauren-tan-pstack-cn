@@ -164,9 +164,6 @@ Playbook 是任务类型对应的可执行流程。主 Skill 负责判断“当�
 
 | Playbook | 下一步重点 |
 |---|---|
-| refactoring | 行为保持如何证明，重构范围如何拆分 |
-| perf-issue | 一次性性能问题的基线和瓶颈证据 |
-| hillclimb | 连续实验的统计口径和收益提交规则 |
 | runtime-forensics | 现场诊断工具、采样和结论边界 |
 | trace-forensics | 捕获文件解析、热点归因和证据 |
 | prototype | 实验如何回答经验问题，如何清理一次性产物 |
@@ -174,14 +171,30 @@ Playbook 是任务类型对应的可执行流程。主 Skill 负责判断“当�
 | eval | 候选盲化、Judge、评分标准与防观察者效应 |
 | authoring-a-skill | Skill 文件校验、链接检查和交付步骤 |
 | opening-a-pr | Commit 整理、PR 描述和证据要求 |
-| babysit | 冲突、Review、CI 的处理优先级和轮询机制 |
-| shipping | 验证结论在 Rebase / Patch-id 下的有效性 |
 | autopilot-stack | 不合并模式下的 PR 依赖与交接 |
 | pause-safely | 当前步骤如何安全结束、保存检查点 |
 | session-pickup | 从 Transcript、分支或云端会话恢复状态 |
 | worktree-cleanup | 如何识别可安全清理的 Worktree 和 Simulator |
 
-## 5. 面向本地多模型工作台的总体判断
+## 5. 第二批深读：PR 生命周期与质量改进
+
+详细分析见 [Playbook 深度研究（二）：PR 生命周期与质量改进](playbook-pr-lifecycle-and-quality.md)。
+
+本轮新增深读：
+
+- **Babysit**：四种运行模式、merge frontier、单一 babysitter、禁止改写堆栈拓扑、冲突 / Review / CI 顺序、CI 分类、Bugbot 评论可信边界，以及 GitHub / Origin 状态隔离。
+- **Shipping**：独立验证者、连续已验证区间、Patch identity、从底向上合并、合并后验证有效性检查。
+- **Refactoring**：先冻结行为契约，再定义目标结构；先减后加；小步迁移；真实产物等价性验证。
+- **Perf issue**：基线 Trace、Benchmark Checklist、由低成本到高成本的优化顺序、前后测量。
+- **Hillclimb**：单指标目标、冻结 Harness、每轮单假设、保留或完整回退、决策日志和停止谓词。
+
+### 已深读数量更新
+
+当前已深读 12 个：Feature、Investigation、Bug fix、Autonomous run、Orchestrate、Autopilot-full、Multi-phase plan、Babysit、Shipping、Refactoring、Perf issue、Hillclimb。
+
+仍待深读 11 个：Runtime forensics、Trace forensics、Prototype、Visual parity、Eval、Authoring a skill、Opening a PR、Autopilot-stack、Pause safely、Session pickup、Worktree cleanup。
+
+## 6. 面向本地多模型工作台的总体判断
 
 不建议将 23 个 Playbook 实现成 23 个互不相关的长提示词。更好的设计是：
 
@@ -194,9 +207,9 @@ Playbook 是任务类型对应的可执行流程。主 Skill 负责判断“当�
 
 建议优先实现 Feature、Bug Fix、Investigation、Refactoring 四条基础工作流，再实现 Swarm / Arena / 独立验证。Autopilot-full 和 Orchestrate 应在任务持久化、权限控制和审计能力成熟后再开放。
 
-## 6. 本文的完成状态
+## 7. 本文的完成状态
 
 - 已从上游主 Skill 确认 23 个 Playbook 的名称和任务路由。
-- 已深读 Feature、Investigation、Bug Fix、Autonomous Run、Orchestrate、Autopilot-full、Multi-phase Plan。
-- 其余 16 个 Playbook 仍是目录级初步分析，不能视为逐篇完成。
+- 已深读 Feature、Investigation、Bug Fix、Autonomous Run、Orchestrate、Autopilot-full、Multi-phase Plan、Babysit、Shipping、Refactoring、Perf issue、Hillclimb。
+- 其余 11 个 Playbook 仍是目录级初步分析，不能视为逐篇完成。
 - 后续更新应在每篇补充上游版本、执行步骤、分支条件、证据、失败路径和迁移建议。
