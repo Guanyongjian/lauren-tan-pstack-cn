@@ -16,4 +16,7 @@
 - 新增剩余 11 个 Playbook 专题文档，覆盖 Autopilot-stack、Runtime forensics、Trace forensics、Prototype、Visual parity、Eval、Authoring a skill、Opening a PR、Pause safely、Session pickup、Worktree cleanup。
 - 更新 Playbook 总表、README 和研究进度：23/23 个 Playbook 的文本研究完成；配套 Scripts、References、Harness、Tests 仍需代码级审计。
 
-后续每次更新应记录上游 SHA、文件变化、中文文档变化及待复核事项。
+- 新增 24 条工程原则逐项研究，整理其触发条件、核心规则、组合关系及 BMC 落地映射。
+- 新增核心 Agent 协作机制深度研究，覆盖 Architect、Arena、Swarm、Interrogate、How、Why、TDD 和验证思路。
+- 对固定 Git tree 重新盘点 P-Stack Skills：当前快照为 58 个 SKILL.md，其中 34 个通用 Skill、24 个 Principle Skill；早期 61 个统计属于不同快照，已在清单中说明差异。
+- 新增 Skills 全量目录与状态表。引用文件、脚本、测试及宿主适配器仍待审计。
