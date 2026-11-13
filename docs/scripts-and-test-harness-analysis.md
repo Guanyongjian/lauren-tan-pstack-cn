@@ -163,6 +163,52 @@ statechart/scripts/package.json 使用 Node 测试运行器和 fast-check；Pote
 
 这些名称显示覆盖了计数器、Action / Guard、死锁、初始化、实例、循环、顺序、并行、视图、登录流程、媒体播放器、两阶段流程、类型守卫等模型场景。具体每个案例的性质和反例应以对应 TLA+ 文件、CFG、Report 和 TLC 输出为准，不能只按名称推断。
 
+
+### 3.5 TLA+ Corpus 的模型语义分组
+
+对 Corpus 中的 TLA+ 主模块和辅助模块做了逐文件顶层声明扫描：共 33 个案例目录、38 个 TLA+ 文件。它们不是 33 个简单快照，而是覆盖了状态图工具的多种输入语义。
+
+| 模型族 | 案例 | 主要覆盖点 |
+|---|---|---|
+| Counter 基础与边界 | Counter、CounterStart、CounterStop、CounterGuard、TypeGuard、CounterInitPast、CounterInitPastHolds、UserNoDeadlock | 多初始态、终止状态、Guard、Type Invariant、初始状态已违反属性、死锁检查 |
+| Counter 转移与路径 | CounterAction、CounterDeadlock、CounterFan、CounterJump、CounterLoop、CounterOrder、CounterRules、CounterTie、CounterTieInGraph、CounterView、FirstRule | Action Property、分支、跳跃、Lasso / Loop、规则排序、模块实例、并列最短路径、视图映射 |
+| 多变量与时序 | DieHard、HiddenClock | 多变量状态、时钟推进、状态条件与 Temporal Property |
+| 业务状态机 | Login、LoginGuarded、LoginParallel | 登录 / 锁定状态、失败次数、安全不变量、并发交错 |
+| 媒体播放器 | MediaPlayer、MediaPlayerFixed、MediaPlayerProps | 播放、暂停、停止、网络变化、来电中断、音量与播放状态约束、Liveness |
+| 并发调度 | PickWorker | Worker 选择、集合状态、弱公平性和最终选中属性 |
+| 分布式协议 | TwoPhase、TwoPhaseFixed | Transaction Manager / Resource Manager 两阶段提交、消息传递、提交一致性 |
+| 解析与模块边界 | SpacedNames、Shadow（含 ShadowLib / ShadowSub） | 空格和特殊名称、模块扩展 / 实例、名称遮蔽与依赖 |
+
+说明：
+- 上表的测试目标根据 TLA+ 顶层定义、Spec、Invariant / Property 和 CFG 交叉归类。
+- Fixed 版本用于对照修正前后模型行为，但具体差异应以各自 TLA+ 文件 Diff 为准。
+- Corpus 还包含 SANY 输出、TLC Verdict、Chart、DOT、Report 和 Exit 快照，测试不仅比较图像，也检查模型运行结果和退出状态。
+
+### 3.6 Statechart 的关键实现细节
+
+源码阅读进一步确认：
+
+1. **TLC 版本与参数固定。** Runner 固定 TLC 1.7.4 的下载地址和 SHA-256，Java 运行时指定 Temurin 25；核心参数固定为单 Worker、关闭 Fingerprint、最终 Liveness 检查。这样黄金输出更可重复。
+2. **双阶段模型检查。** 先跑用户 Spec 获取 TLC 结果，再生成辅助 ChartRun / ChartBound Spec，对状态和违规规则做标记或受限重跑。
+3. **中间表示 IR。** 将 TLC 输出统一为 Value、Vars、Rule、State、Step、Trace、Bug、Verdict、CheckResult 等类型，后续图算法不直接依赖原始 TLC 文本。
+4. **输入解析器。** 解析 TLC Config、SANY XML、TLC Message、DOT Graph、TLA+ Value、Counterexample Trace 和 Verdict。解析失败会报告具体输入片段，不静默丢弃。
+5. **图算法 Pass。** Reachability 做 BFS；从初始状态构建可达图；恢复违规路径和最短路径；识别 Lasso Loop；检查并行 Region 的组合状态是否与真实模型一致；再提升公共父状态的箭头以简化图。
+6. **Mermaid 输出防注入 / 转义。** Mermaid Backend 对特殊字符、方向关键字、双中括号、C4 关键字和标记语法进行转义，避免模型状态文本破坏图语法。
+7. **原子产物写入。** Worker 先写 Stage/Draft，完成后 Rename 成 Done；主进程再发布输出。已有非空目录拒绝覆盖，避免破坏历史证据。
+8. **错误码语义明确。** TLC 规则通过为 0、规则被违反为 1、运行错误 / 信号终止 / 工具不可用为 2；SIGINT / SIGTERM 分别保留 130 / 143。只有 0 和 1 生成正常结果文件。
+9. **图规模控制。** 超过 500 个状态时图表聚焦违规路径；如果没有违规路径则不输出 chart.mmd，报告必须解释范围裁剪，而不能把不完整图误称为完整状态图。
+
+### 3.7 Statechart 测试层次
+
+- Unit / Property：直接测试 IR、Parser、Reachability、Mark、Region、Mermaid Escaping 和 Report。
+- CLI Integration：真实启动 Node CLI、Java / TLC，检查退出码、输出目录和错误路径。
+- Corpus Golden：遍历 33 个案例，对照提交的 Chart / Report / TLC Output / Exit。
+- Differential：用生成模型对照 TLC 的真实行为，覆盖状态变量名称、动作标签、组和特殊字符。
+- Config Fuzz：固定 Seed 生成 4000 个 CFG，和 TLC 本身的配置解析结果做差分比较。
+- Rendering：将 Corpus Mermaid 图交给 Pele 和 Mermaid 实际渲染，验证图可渲染、CSS Class 落在正确节点上。
+
+这套测试的价值在于同时验证“模型是否正确运行”“解析器是否忠实理解 TLC 输出”“图是否忠实表达模型”和“渲染器是否能显示”。单测通过并不足以替代完整端到端验证。
+
 ## 4. 代码实现审计得到的共性
 
 1. **状态先建模：** Watcher 用判别联合表达 CI / PR 状态；Statechart 用 IR 表达模型结果。
