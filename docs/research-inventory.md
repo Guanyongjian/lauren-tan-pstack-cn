@@ -36,7 +36,7 @@
 | Principles | 24 | 24/24 主文件逐项研究完成，引用资源待交叉核验 |
 | Agents | 2 | 2/2 主文件已深读，角色与权限边界已记录 |
 | Automations | 12 | Benny 12/12 文件文本研究完成；尚未在真实 Slack / Tracker / Control Adapter 环境端到端运行 |
-| Scripts / test corpus | 424 / 356 | 主要工具入口和代表性测试已审计；全量脚本逐行审计及全部测试运行待完成 |
+| Scripts / test corpus | 424 / 356 | 51 TS、10 MJS、2 Shell、1 Java 及代表性测试均已静态审阅；未执行完整测试套件；356 个 Corpus 文件已分类而非逐项人工翻译 |
 | References | 30 | 全部路径盘点并按所属 Skill 分类研究；个别长文档需后续全文校对 |
 
 ### 已深读的 Playbook（23）
