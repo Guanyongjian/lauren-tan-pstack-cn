@@ -81,14 +81,13 @@
 
 仅列出文件名或生成一句摘要，不算完成。
 
-## 4. 推荐研究顺序
+## 4. 后续验证与工程化任务
 
-1. 剩余 Playbook：补齐端到端工作流。
-2. Arena、Swarm、Interrogate、Architect：理解协作原语。
-3. Eval、Verification、TDD：理解质量闭环。
-4. Principles：理解底层工程判断。
-5. 其他 Skills、Agents、Automations：补齐工具箱。
-6. Scripts、测试语料和适配器：核对实现细节。
+1. 在匹配环境运行完整 Bun / Node / TLC 测试套件。
+2. 运行 Claude Code Harness 生成器的 --check，验证生成树无漂移。
+3. 对 Benny 在测试 Slack / Tracker / App 环境执行端到端验证。
+4. 对 356 个 Statechart Corpus 文件执行机器化一致性检查，并复跑 33 个模型案例。
+5. 实现 Codex Provider / Runtime Adapter 和本地任务状态持久化。
 
 ## 5. 文件索引
 
@@ -98,6 +97,6 @@
 - [上游 Agents](https://github.com/cursor/plugins/tree/main/pstack/agents)
 - [上游 Automations](https://github.com/cursor/plugins/tree/main/pstack/automations)
 
-## 7. 研究转化产物
+## 6. 研究转化产物
 
 - [Codex 多模型工作台目标架构](codex-multimodel-workbench-architecture.md)：基于 P-Stack 研究形成的二次设计，不属于上游事实。
