@@ -9,8 +9,9 @@
 - [x] 建立架构、协作、Eval、原则的首批研究文档
 - [x] 完成 10 篇用户指南中文解读初版
 - [x] 完成 Poteto Mode 主调度规则分析
-- [x] 建立 23 个 Playbook 路由目录，深读其中 7 个
-- [ ] 完成剩余 16 个 Playbook 的逐篇分析
+- [x] 建立 23 个 Playbook 路由目录
+- [x] 深读 12 个 Playbook（其中本轮新增 5 个）
+- [ ] 完成剩余 11 个 Playbook 的逐项分析
 - [ ] 完成 61 个 Skill 的逐项分析
 - [ ] 完成 24 条工程原则的逐项分析
 - [ ] 分析脚本、测试语料、自动化和适配器
@@ -37,7 +38,8 @@
 | [docs/architecture.md](docs/architecture.md) | P-Stack 总体架构与核心组件 |
 | [docs/agent-collaboration.md](docs/agent-collaboration.md) | Poteto Mode、Arena、Swarm、Interrogate |
 | [docs/poteto-mode-analysis.md](docs/poteto-mode-analysis.md) | 主调度规则、路由、Subagent、权限和 Codex 迁移 |
-| [docs/playbook-catalog.md](docs/playbook-catalog.md) | 23 个 Playbook 目录及已深读流程 |
+| [docs/playbook-catalog.md](docs/playbook-catalog.md) | 23 个 Playbook 目录与分析进度 |
+| [docs/playbook-pr-lifecycle-and-quality.md](docs/playbook-pr-lifecycle-and-quality.md) | Babysit、Shipping、Refactoring、Perf issue、Hillclimb 深度分析 |
 | [docs/eval-system.md](docs/eval-system.md) | Eval 盲测流程与评估方法 |
 | [docs/engineering-principles.md](docs/engineering-principles.md) | 工程原则总览 |
 | [docs/research-inventory.md](docs/research-inventory.md) | 文件清单、分类、统计口径和研究进度 |
