@@ -7,7 +7,7 @@
 - 初始 Git tree：`6e359ce0aba9e927914d8a940510aa2ef66a8f23`
 - 初始插件版本字段：`0.15.36`
 - 文件总数：573
-- Skill 主文件（`SKILL.md`）：61
+- Skill 主文件（`SKILL.md`）：本轮固定快照 58（34 个通用 Skill + 24 个 Principle Skill）；早期 61 为不同快照，不能混用
 - Playbook：23
 - 独立 Principle Skill：24
 - Guide Markdown：11
@@ -31,11 +31,11 @@
 | 研究对象 | 数量 | 状态 |
 |---|---:|---|
 | Guide | 10 篇用户指南 | 中文解读初版已完成，需持续校对 |
-| Skills | 61 | 已抽样，待全量分析 |
+| Skills | 58 | 路径盘点完成；24 条原则逐项分析；34 个通用 Skill 已建立分类表，引用资源和实现审计继续进行 |
 | Playbooks | 23 | 23/23 已逐篇完成文本研究；配套脚本与测试待代码级审计 |
-| Principles | 24 | 已建立总览，待逐项分析 |
-| Agents | 2 | 已抽样阅读 |
-| Automations | 12 | 待分析 |
+| Principles | 24 | 24/24 主文件逐项研究完成，引用资源待交叉核验 |
+| Agents | 2 | 已确认文件清单，待逐篇深读 |
+| Automations | 12 | 已确认文件清单，待逐篇深读 |
 | Scripts / test corpus | 424 / 356 | 待按调用链和测试用途分析 |
 
 ### 已深读的 Playbook（23）
