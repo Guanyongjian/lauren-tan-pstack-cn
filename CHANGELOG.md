@@ -34,3 +34,5 @@
 - 新增 Codex 多模型工作台目标架构设计，将 P-Stack 的 Playbook、角色路由、Worktree、Evidence、Approval、Provider Adapter 和本地优先部署映射为可实施架构。
 
 - 新增 P-Stack 全量研究阶段性完成报告，汇总 573 个文件、23 个 Playbook、58 个 Skill、24 条原则、30 个 Reference、2 个 Agent、12 个 Automation 文件、代码与测试资产的覆盖状态，并明确尚未执行的运行验证。
+
+- 重写 README 作为完整研究入口，链接到全部专题文档；校验 README 的 30 个仓库内相对链接，均可在当前 main 文件树中解析。
