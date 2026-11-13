@@ -1,0 +1,54 @@
+# Lauren Tan P-Stack 中文研究与实践
+
+> 对 Lauren Tan（Poteto）在 Cursor Plugins 中发布的 P-Stack 进行中文研究、结构化解读与工程实践。目标是理解其 Agent 工作流设计，并提炼适用于 Codex、GPT、Kimi、DeepSeek 与软件工程项目的可复用方法。
+
+## 项目状态
+
+- [x] 确认上游仓库与目录：`cursor/plugins/pstack`
+- [x] 记录本次研究基线：上游 `main`，插件版本以 `plugin.json` 为准
+- [x] 建立架构、协作、Eval、原则的首批研究文档
+- [ ] 完成全部用户指南逐篇解读
+- [ ] 完成 61 个 Skill 的目录级盘点与逐项分析
+- [ ] 完成 23 个 Playbook 的逐项分析
+- [ ] 完成 24 条工程原则的逐项分析
+- [ ] 分析脚本、测试语料、自动化和适配器
+- [ ] 建立上游变更追踪流程
+
+## 研究范围与口径
+
+本项目以 [Cursor Plugins 上游 P-Stack](https://github.com/cursor/plugins/tree/main/pstack) 为研究对象。研究时区分：
+
+1. **上游事实**：文件中明确写出的行为、配置、步骤与约束。
+2. **中文解读**：对设计意图、机制和利弊的解释。
+3. **实践建议**：将方法适配到其他 Agent 运行环境时的建议，不代表上游原生支持。
+4. **待验证事项**：需要通过实际运行、测试或进一步读取源码确认的结论。
+
+不把目录名、宣传语或访谈摘要当成实现证据；涉及具体机制时尽量链接到对应上游文件。
+
+## 目录
+
+| 路径 | 内容 |
+|---|---|
+| [docs/architecture.md](docs/architecture.md) | P-Stack 总体架构与核心组件 |
+| [docs/agent-collaboration.md](docs/agent-collaboration.md) | Poteto Mode、Arena、Swarm、Interrogate |
+| [docs/eval-system.md](docs/eval-system.md) | Eval 盲测流程与评估方法 |
+| [docs/engineering-principles.md](docs/engineering-principles.md) | 工程原则及其在开发中的应用 |
+| [docs/research-inventory.md](docs/research-inventory.md) | 文件清单、分类、统计口径和研究进度 |
+| [UPSTREAM.md](UPSTREAM.md) | 上游来源、版本与版权说明 |
+| [CHANGELOG.md](CHANGELOG.md) | 本项目研究进度与更新记录 |
+
+## 核心研究问题
+
+- 如何让一个主 Agent 根据任务选择稳定的工作流程？
+- 如何划分“同题竞争”（Arena）与“分工并行”（Swarm）？
+- 如何通过独立验证和盲测降低模型自评偏差？
+- 如何将经验沉淀成 Skills、Playbooks、Principles，而不是堆叠临时提示词？
+- 哪些方法能迁移到 Codex CLI、不同模型 API 和本地代码仓库？
+
+## 贡献与纠错
+
+欢迎提交 Issue 或 PR。请指出对应的上游文件、版本或行号，并区分原文事实、个人解释和实践建议。
+
+## 免责声明
+
+本项目是独立的中文研究与解读项目，不代表 Lauren Tan、Cursor 或其关联组织。上游项目及其文件版权、许可证以原仓库声明为准。本项目新增的中文分析内容不应被误认为上游官方文档。
