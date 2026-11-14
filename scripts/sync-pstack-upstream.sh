@@ -27,7 +27,7 @@ UPSTREAM_COMMIT="$(git -C "$SRC" rev-parse HEAD)"
 UPSTREAM_TREE="$(git -C "$SRC" rev-parse HEAD^{tree})"
 PSTACK_VERSION="$(sed -n 's/.*"version": *"\([^"]*\)".*/\1/p' "$SRC/pstack/plugin.json" | head -n 1)"
 
-mkdir -p "$DEST" "$REPO_ROOT/upstream"
+mkdir -p "$DEST/pstack" "$DEST/harness/pstack" "$DEST/scripts" "$REPO_ROOT/upstream"
 rsync -a --delete "$SRC/pstack/" "$DEST/pstack/"
 rsync -a --delete "$SRC/harness/pstack/" "$DEST/harness/pstack/"
 mkdir -p "$DEST/scripts"
