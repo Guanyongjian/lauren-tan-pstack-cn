@@ -89,7 +89,7 @@
 - [快照版本、文件统计和许可证说明](upstream/来源与版本说明.md)。
 - [同步脚本](scripts/sync-pstack-upstream.sh)及 [GitHub Actions 工作流](.github/workflows/sync-pstack-upstream.yml)：用于完整同步文件（包含二进制图片），不会覆盖现有中文研究成果。
 
-首次完整同步由 GitHub Actions 执行；工作流完成后，原始文件会直接出现在本仓库的 `upstream/cursor-plugins/` 目录中。
+<badge>已完成</badge> 首次完整同步已通过 GitHub Actions 执行并核对：1135 个文件全部保存，路径与 Blob SHA 均与固定上游 Commit 一致。后续可手动运行工作流更新快照。
 
 ---
 
