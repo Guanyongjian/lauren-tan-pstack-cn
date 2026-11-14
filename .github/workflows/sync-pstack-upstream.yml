@@ -1,0 +1,51 @@
+name: 同步 P-Stack 上游快照
+
+on:
+  workflow_dispatch:
+    inputs:
+      upstream_ref:
+        description: "cursor/plugins 的分支、标签或 Commit SHA"
+        required: false
+        default: "3dbd22ff12742fb28c9700b9760baa29ed41dc13"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/sync-pstack-upstream.yml"
+      - "scripts/sync-pstack-upstream.sh"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-pstack-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出中文研究仓库
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: 同步上游原始文件
+        env:
+          UPSTREAM_REF: ${{ github.event.inputs.upstream_ref || '3dbd22ff12742fb28c9700b9760baa29ed41dc13' }}
+        run: |
+          chmod +x scripts/sync-pstack-upstream.sh
+          scripts/sync-pstack-upstream.sh "$UPSTREAM_REF"
+
+      - name: 提交上游快照
+        run: |
+          git add upstream/cursor-plugins upstream/来源与版本说明.md
+          if git diff --cached --quiet; then
+            echo "上游快照没有变化。"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "upstream: sync cursor/plugins snapshot"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
