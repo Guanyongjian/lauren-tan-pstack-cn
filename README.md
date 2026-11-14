@@ -20,44 +20,44 @@
 - [ ] 在真实 GitHub / Slack / App 环境端到端验证
 - [ ] 实现并验证 Codex Runtime / Provider Adapter
 
-**研究边界：** 静态文本与源码研究已覆盖主要资产；测试执行、外部服务端到端验证和 Codex 工作台程序实现仍是后续工程工作。详见[研究完成报告](docs/research-completion-report.md)。
+**研究边界：** 静态文本与源码研究已覆盖主要资产；测试执行、外部服务端到端验证和 Codex 工作台程序实现仍是后续工程工作。详见[研究完成报告](docs/研究完成报告.md)。
 
 ## 中文指南
 
-- [指南索引](translations/guide/README.md)
-- [01 安装与配置](translations/guide/01-setup.md)
-- [02 Poteto Mode 路由任务](translations/guide/02-poteto-mode.md)
-- [03 理解代码](translations/guide/03-understand.md)
-- [04 设计](translations/guide/04-design.md)
-- [05 实现与清理](translations/guide/05-build-and-clean.md)
-- [06 验证与交付](translations/guide/06-verify-and-ship.md)
-- [07 自主运行](translations/guide/07-overnight.md)
-- [08 工程原则](translations/guide/08-principles.md)
-- [09 定制工作流](translations/guide/09-make-it-yours.md)
-- [10 配方与陷阱](translations/guide/10-recipes-and-pitfalls.md)
+- [指南索引](translations/guide/指南目录.md)
+- [01 安装与配置](translations/guide/01-安装与配置.md)
+- [02 Poteto Mode 路由任务](translations/guide/02-Poteto模式任务路由.md)
+- [03 理解代码](translations/guide/03-代码理解.md)
+- [04 设计](translations/guide/04-架构设计.md)
+- [05 实现与清理](translations/guide/05-功能实现与代码清理.md)
+- [06 验证与交付](translations/guide/06-验证与交付.md)
+- [07 自主运行](translations/guide/07-自主运行与自动化.md)
+- [08 工程原则](translations/guide/08-工程原则.md)
+- [09 定制工作流](translations/guide/09-定制工作流.md)
+- [10 配方与陷阱](translations/guide/10-实践配方与常见陷阱.md)
 
 ## 研究文档
 
 | 路径 | 内容 |
 |---|---|
-| [architecture.md](docs/architecture.md) | P-Stack 总体架构 |
-| [poteto-mode-analysis.md](docs/poteto-mode-analysis.md) | 主调度规则、任务路由、Subagent 和权限 |
-| [playbook-catalog.md](docs/playbook-catalog.md) | 23 个 Playbook 目录与研究状态 |
-| [playbook-pr-lifecycle-and-quality.md](docs/playbook-pr-lifecycle-and-quality.md) | Babysit、Shipping、Refactoring、性能优化 |
-| [playbook-remaining-11-analysis.md](docs/playbook-remaining-11-analysis.md) | 剩余 11 个 Playbook 深度分析 |
-| [skills-catalog.md](docs/skills-catalog.md) | 58 个 Skill 全量目录、分类和状态 |
-| [engineering-principles-deep-dive.md](docs/engineering-principles-deep-dive.md) | 24 条工程原则逐项研究 |
-| [agent-collaboration-deep-dive.md](docs/agent-collaboration-deep-dive.md) | Architect、Arena、Swarm、Interrogate、How、Why |
-| [agents-and-automations-analysis.md](docs/agents-and-automations-analysis.md) | Agent 定义与 Benny 自动化 |
-| [scripts-and-test-harness-analysis.md](docs/scripts-and-test-harness-analysis.md) | Watcher、Statechart、脚本和测试资产 |
-| [references-and-harness-portability.md](docs/references-and-harness-portability.md) | 30 个 Reference 与 Claude Code Harness |
-| [meta-skills-and-learning-loop.md](docs/meta-skills-and-learning-loop.md) | Figure It Out、Setup、Reflect、Correct、Automate Me |
-| [eval-system.md](docs/eval-system.md) | Eval 盲测流程 |
-| [agent-collaboration.md](docs/agent-collaboration.md) | Agent 协作机制初步总览 |
-| [engineering-principles.md](docs/engineering-principles.md) | 工程原则总览 |
-| [research-inventory.md](docs/research-inventory.md) | 文件盘点、统计口径和进度 |
-| [codex-multimodel-workbench-architecture.md](docs/codex-multimodel-workbench-architecture.md) | 基于 P-Stack 的 Codex 多模型工作台目标架构 |
-| [research-completion-report.md](docs/research-completion-report.md) | 研究覆盖、结论、未完成运行验证和验收门禁 |
+| [P-Stack 总体架构](docs/P-Stack总体架构分析.md) | P-Stack 总体架构 |
+| [Poteto Mode 调度机制](docs/Poteto模式调度机制分析.md) | 主调度规则、任务路由、Subagent 和权限 |
+| [23 个工作流目录](docs/工作流目录与初步分析.md) | 23 个 Playbook 目录与研究状态 |
+| [PR 生命周期与质量改进](docs/PR生命周期与质量改进研究.md) | Babysit、Shipping、Refactoring、性能优化 |
+| [其他 11 个工作流深度分析](docs/其他11个工作流深度研究.md) | 剩余 11 个 Playbook 深度分析 |
+| [Skill 目录与研究状态](docs/技能目录与研究状态.md) | 58 个 Skill 全量目录、分类和状态 |
+| [24 条工程原则深度研究](docs/工程原则深度研究.md) | 24 条工程原则逐项研究 |
+| [核心 Agent 协作机制](docs/智能体协作深度研究.md) | Architect、Arena、Swarm、Interrogate、How、Why |
+| [Agent 与自动化研究](docs/智能体与自动化研究.md) | Agent 定义与 Benny 自动化 |
+| [脚本与测试框架研究](docs/脚本与测试框架研究.md) | Watcher、Statechart、脚本和测试资产 |
+| [Reference 与多平台适配研究](docs/参考资料与多平台适配研究.md) | 30 个 Reference 与 Claude Code Harness |
+| [元工作流与学习闭环](docs/元工作流与学习闭环.md) | Figure It Out、Setup、Reflect、Correct、Automate Me |
+| [Eval 模型盲测流程](docs/模型评测系统.md) | Eval 盲测流程 |
+| [Agent 协作机制总览](docs/智能体协作机制总览.md) | Agent 协作机制初步总览 |
+| [工程原则总览](docs/工程原则总览.md) | 工程原则总览 |
+| [研究文件清单](docs/研究文件清单.md) | 文件盘点、统计口径和进度 |
+| [Codex 多模型工作台架构](docs/Codex多模型工作台架构设计.md) | 基于 P-Stack 的 Codex 多模型工作台目标架构 |
+| [全量研究完成报告](docs/研究完成报告.md) | 研究覆盖、结论、未完成运行验证和验收门禁 |
 
 ## 研究口径
 
