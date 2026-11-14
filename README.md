@@ -79,6 +79,20 @@
 
 ---
 
+## 上游原始资料（完整快照）
+
+本仓库同时保存中文研究成果和固定版本的上游原始资料。原始文件保留上游路径、文件名、代码、配置、图片和测试语料，不与中文翻译混放。
+
+- [P-Stack 原始插件目录](upstream/cursor-plugins/pstack/)：上游完整 `pstack/` 目录。
+- [Claude Code Harness 生成目录](upstream/cursor-plugins/harness/pstack/)：上游生成的适配副本。
+- [上游配套脚本](upstream/cursor-plugins/scripts/)：P-Stack 文档检查与 Harness 生成脚本。
+- [快照版本、文件统计和许可证说明](upstream/来源与版本说明.md)。
+- [同步脚本](scripts/sync-pstack-upstream.sh)及 [GitHub Actions 工作流](.github/workflows/sync-pstack-upstream.yml)：用于完整同步文件（包含二进制图片），不会覆盖现有中文研究成果。
+
+首次完整同步由 GitHub Actions 执行；工作流完成后，原始文件会直接出现在本仓库的 `upstream/cursor-plugins/` 目录中。
+
+---
+
 ## 研究文档
 
 | 路径 | 内容 |
@@ -126,7 +140,7 @@
 - 上游：[cursor/plugins/tree/main/pstack](https://github.com/cursor/plugins/tree/main/pstack)
 - 上游版本字段：0.15.36（研究快照信息，非当前版本承诺）
 - 本项目为独立中文研究与解读，不代表 Lauren Tan、Cursor 或其关联组织。
-- 上游项目的版权和许可证以原仓库声明为准；本项目不将上游全部原文复制进公开仓库。
+- 上游 P-Stack 的 `plugin.json` 声明 MIT 许可证；完整快照同步时保留上游目录内的 LICENSE 和版权声明。
 
 ## 贡献与纠错
 
