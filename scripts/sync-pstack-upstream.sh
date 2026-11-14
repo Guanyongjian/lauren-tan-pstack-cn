@@ -25,12 +25,11 @@ git -C "$SRC" checkout --detach FETCH_HEAD
 
 UPSTREAM_COMMIT="$(git -C "$SRC" rev-parse HEAD)"
 UPSTREAM_TREE="$(git -C "$SRC" rev-parse HEAD^{tree})"
-PSTACK_VERSION="$(sed -n 's/.*"version": *"\([^"]*\)".*/\1/p' "$SRC/pstack/plugin.json" | head -n 1)"
+PSTACK_VERSION="$(jq -r '.version' "$SRC/pstack/plugin.json")"
 
 mkdir -p "$DEST/pstack" "$DEST/harness/pstack" "$DEST/scripts" "$REPO_ROOT/upstream"
 rsync -a --delete "$SRC/pstack/" "$DEST/pstack/"
 rsync -a --delete "$SRC/harness/pstack/" "$DEST/harness/pstack/"
-mkdir -p "$DEST/scripts"
 cp -p "$SRC/scripts/check-pstack-docs.mjs" "$DEST/scripts/"
 cp -p "$SRC/scripts/generate-pstack-harness-trees.mjs" "$DEST/scripts/"
 
@@ -38,29 +37,30 @@ PSTACK_COUNT="$(find "$DEST/pstack" -type f | wc -l | tr -d ' ')"
 HARNESS_COUNT="$(find "$DEST/harness/pstack" -type f | wc -l | tr -d ' ')"
 SCRIPT_COUNT="$(find "$DEST/scripts" -maxdepth 1 -type f \( -name 'check-pstack-docs.mjs' -o -name 'generate-pstack-harness-trees.mjs' \) | wc -l | tr -d ' ')"
 TOTAL_COUNT=$((PSTACK_COUNT + HARNESS_COUNT + SCRIPT_COUNT))
+SYNC_DATE="$(date -u +%F)"
 
-cat > "$REPO_ROOT/upstream/来源与版本说明.md" <<EOF
+cat > "$REPO_ROOT/upstream/来源与版本说明.md" <<'SNAPSHOT_EOF'
 # P-Stack 上游快照说明
 
 本目录保存上游 `cursor/plugins` 仓库中与 P-Stack 直接相关的原始文件。
 
-- 上游仓库：$UPSTREAM_URL
-- 上游 Commit：`$UPSTREAM_COMMIT`
-- 上游 Git tree：`$UPSTREAM_TREE`
-- P-Stack 版本：`$PSTACK_VERSION`
-- 同步日期：$(date -u +%F)
-- P-Stack 原始文件：$PSTACK_COUNT
-- Claude Code Harness 文件：$HARNESS_COUNT
-- 配套维护脚本：$SCRIPT_COUNT
-- 文件总数：$TOTAL_COUNT
+- 上游仓库：__UPSTREAM_URL__
+- 上游 Commit：`__UPSTREAM_COMMIT__`
+- 上游 Git tree：`__UPSTREAM_TREE__`
+- P-Stack 版本：`__PSTACK_VERSION__`
+- 同步日期：__SYNC_DATE__
+- P-Stack 原始文件：__PSTACK_COUNT__
+- Claude Code Harness 文件：__HARNESS_COUNT__
+- 配套维护脚本：__SCRIPT_COUNT__
+- 文件总数：__TOTAL_COUNT__
 
 ## 目录对应关系
 
 | 上游路径 | 本仓库路径 | 文件数 |
 |---|---|---:|
-| `pstack/` | `upstream/cursor-plugins/pstack/` | $PSTACK_COUNT |
-| `harness/pstack/` | `upstream/cursor-plugins/harness/pstack/` | $HARNESS_COUNT |
-| 两个 P-Stack 检查 / 生成脚本 | `upstream/cursor-plugins/scripts/` | $SCRIPT_COUNT |
+| `pstack/` | `upstream/cursor-plugins/pstack/` | __PSTACK_COUNT__ |
+| `harness/pstack/` | `upstream/cursor-plugins/harness/pstack/` | __HARNESS_COUNT__ |
+| 两个 P-Stack 检查 / 生成脚本 | `upstream/cursor-plugins/scripts/` | __SCRIPT_COUNT__ |
 
 ## 许可证与版权
 
@@ -77,6 +77,18 @@ scripts/sync-pstack-upstream.sh <branch|tag|commit>
 ```
 
 也可以在 GitHub Actions 中手动运行“同步 P-Stack 上游快照”工作流。同步只更新 `upstream/cursor-plugins/` 和本说明文件，不覆盖 `translations/`、`docs/` 或根目录研究成果。
-EOF
+SNAPSHOT_EOF
+
+sed -i \
+  -e "s|__UPSTREAM_URL__|$UPSTREAM_URL|g" \
+  -e "s|__UPSTREAM_COMMIT__|$UPSTREAM_COMMIT|g" \
+  -e "s|__UPSTREAM_TREE__|$UPSTREAM_TREE|g" \
+  -e "s|__PSTACK_VERSION__|$PSTACK_VERSION|g" \
+  -e "s|__SYNC_DATE__|$SYNC_DATE|g" \
+  -e "s|__PSTACK_COUNT__|$PSTACK_COUNT|g" \
+  -e "s|__HARNESS_COUNT__|$HARNESS_COUNT|g" \
+  -e "s|__SCRIPT_COUNT__|$SCRIPT_COUNT|g" \
+  -e "s|__TOTAL_COUNT__|$TOTAL_COUNT|g" \
+  "$REPO_ROOT/upstream/来源与版本说明.md"
 
 echo "Synced cursor/plugins@$UPSTREAM_COMMIT (P-Stack $PSTACK_VERSION; $TOTAL_COUNT files)."
