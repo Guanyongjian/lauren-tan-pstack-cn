@@ -8,10 +8,13 @@
 //
 // Exits 1 on any violation, so it can gate a PR.
 //
-// The zh tree drops the leading "skills/" segment. Upstream keeps "skills/<name>/SKILL.md",
-// while the translation lives at "translations/skills-zh/<name>/SKILL.md". Both directions of
-// that mapping are applied below; without it every translation looks like an orphan and every
-// literal check is skipped.
+// Two path mappings matter here:
+//   1. Upstream keeps "skills/<name>/SKILL.md" while the zh tree drops the leading "skills/".
+//      Without this, every translation looks like an orphan AND every per-file literal check
+//      is skipped by the `existsSync` guard, so the script passes no matter what it contains.
+//   2. Links between translated skills use the zh layout ("../<name>/SKILL.md"). A partial
+//      translation batch legitimately points at a skill that is not translated yet, so the
+//      target is allowed to resolve to the upstream source as well.
 
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { dirname, join, posix, relative } from "node:path";
@@ -53,7 +56,8 @@ const fences = (s) => (s.match(/^\s*(```|~~~)/gm) ?? []).length;
 
 // Upstream keeps "skills/<name>/SKILL.md"; the zh tree drops the leading "skills/".
 const zhPathOf = (upstreamRel) => upstreamRel.replace(/^skills\//, "");
-const upstreamPathOf = (zhRel) => (existsSync(join(UPSTREAM, "skills", zhRel)) ? `skills/${zhRel}` : zhRel);
+const upstreamPathOf = (zhRel) =>
+  existsSync(join(UPSTREAM, "skills", zhRel)) ? `skills/${zhRel}` : zhRel;
 
 // 1. Every upstream doc must have a translated counterpart, and vice versa.
 const sourceFiles = walk(UPSTREAM)
@@ -109,15 +113,18 @@ for (const path of zhFiles) {
     fail(`${path}: code fence count ${fences(text)} != upstream ${fences(upstreamText)}`);
   }
 
-  // 4. Relative links must still resolve inside the translated tree.
+  // 4. Relative links must resolve to a translated file or, while the batch is partial,
+  //    to the upstream source. Resolving to nothing at all is still a failure.
   for (const { 1: href } of text.matchAll(/\]\(<?([^)\s>]+)>?(?:\s+"[^"]*")?\)/g)) {
     if (/^[a-z][a-z0-9+.-]*:/i.test(href)) continue;
     const target = href.split("#")[0];
     if (!target) continue;
-    const resolved = posix.normalize(posix.join(posix.dirname(path), target)).replace(/\/$/, "");
-    if (!existsSync(join(ZH, resolved)) && !existsSync(join(UPSTREAM, resolved))) {
-      fail(`${path}: link ${href} resolves to nothing in either tree`);
-    }
+    const goal = (s) => posix.normalize(posix.join(posix.dirname(path), s)).replace(/\/$/, "");
+    const candidates = [goal(target), goal(target.replace(/^(\.\.\/)+/, ""))];
+    const found = candidates.some(
+      (rel) => existsSync(join(ZH, rel)) || existsSync(join(UPSTREAM, "skills", rel)) || existsSync(join(UPSTREAM, rel)),
+    );
+    if (!found) fail(`${path}: link ${href} resolves to nothing in either tree`);
   }
 
   // 5. Chapter titles keep the English original for lookup.
