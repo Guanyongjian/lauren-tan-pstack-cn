@@ -1,24 +1,24 @@
 ---
 name: principle-model-the-domain
-description: "在写有状态逻辑时适用，或当代码分支很多、跨文件重复同一种形状假设时适用。"
+description: "在写 stateful logic 时适用，或当代码 branch 很多、跨 file 重复同一种 shape assumption 时适用。"
 disable-model-invocation: true
 ---
 
 # Model the Domain（对领域建模）
 
-把真实的领域编码进一个数据结构，而不是把它散落在各个条件分支里。与领域匹配的结构能让非法状态无法表示，并删掉分支。在写代码时选它是便宜的；事后补救读起来像一次重构，于是被一拖再拖。
+把真实的 domain 编码进一个 data structure，而不是把它散落在各个 conditional 里。与 domain 匹配的结构能让 invalid state 无法表示，并删掉 branch。在写代码时选它是便宜的；事后补救读起来像一次 refactor，于是被一拖再拖。
 
 优先考虑：
 
-- 用状态机，而不是散落的 boolean、phase 或生命周期检查。
-- 用带类型的模型，而不是松散的参数或反复出现的形状假设。
-- 用 map、registry、lookup table 或 discriminated union，而不是散落各文件的分支。
-- 用 reducer 或 command/event 模型，而不是临时起意的状态修改。
-- 用围绕单一体量的领域知识组织的模块，而不是按 load、validate、transform、save 这类顺序切分。执行顺序不等于归属。
-- 用一个小模块边界来收拢重复出现的行为、归属或 invariant。
-- 在访问模式需要时，用 queue、cache、index、graph、tree 或归一化集合。
-- 任何其他合适的结构。当没有合适结构时，先把「代码绝不能允许什么」「数据如何被读取」想清楚，再去找恰好能编码这些的结构。
+- 用 state machine，而不是散落的 boolean、phase 或 lifecycle check。
+- 用 typed model，而不是松散的 parameter 或反复出现的 shape assumption。
+- 用 map、registry、lookup table 或 discriminated union，而不是散落各 file 的 branch。
+- 用 reducer 或 command/event model，而不是临时起意的 state mutation。
+- 用围绕单一体量的 domain knowledge 组织的 module，而不是按 load、validate、transform、save 这类顺序切分。execution order 不等于 ownership。
+- 用一个小 module boundary 来收拢重复出现的 behavior、ownership 或 invariant。
+- 在 access pattern 需要时，用 queue、cache、index、graph、tree 或 normalized collection。
+- 任何其他合适的结构。当没有合适结构时，先把「代码绝不能允许什么」「data 如何被读取」想清楚，再去找恰好能编码这些的结构。
 
-不要硬套抽象。如果当前形状已经清晰、局部、且不太可能增长，就选无聊的代码。对那些只增加间接层、却不消除分支、不消除重复规则、不消除非法状态、不降低生命周期风险的抽象，保持怀疑。
+不要硬套 abstraction。如果当前 shape 已经清晰、局部、且不太可能增长，就选 boring code。对那些只增加 indirection、却不消除 branch、不消除重复 rule、不消除 invalid state、不降低 lifecycle risk 的 abstraction，保持怀疑。
 
-你漏掉本原则的信号是：一个新功能只是把现有的 if/else 链又加长了一个分支，或者多了一个必须与第一个保持同步的 boolean。按时间切分是另一个信号——以阶段命名的模块会把同一套领域规则在各个步骤里重复一遍。
+你漏掉本原则的 signal 是：一个新 feature 只是把现有的 if/else 链又加长了一个 branch，或者多了一个必须与第一个保持同步的 boolean。temporal decomposition 是另一个 signal——以 phase 命名的 module 会把同一套 domain rule 在各个 step 里重复一遍。
