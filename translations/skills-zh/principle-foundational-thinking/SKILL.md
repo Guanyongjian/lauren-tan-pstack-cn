@@ -1,21 +1,21 @@
 ---
 name: principle-foundational-thinking
-description: "写逻辑之前适用：选择核心类型和数据结构、安排 scaffold 与 feature 的先后、想清楚并发方共享了什么。把数据结构选对，下游代码就会变得显然。"
+description: "写 logic 之前适用：选择核心 type 和 data structure、安排 scaffold 与 feature 的先后、想清楚 concurrent actor 共享了什么。把 data structure 选对，下游 code 就会变得显然。"
 disable-model-invocation: true
 ---
 
 # Foundational Thinking（基础思维）
 
-**结构性决策**保护 option value。**代码层决策**保护简单性。
+**Structural decision** 保护 option value。**Code-level decision** 保护 simplicity。
 
-**数据结构先行。** 先定对数据形状，再写逻辑。早点定义核心类型，追踪每一种访问模式，选择与主流路径匹配的结构。
+**Data structure 先行。** 先定对 data shape，再写 logic。早点定义 core type，trace 每一种 access pattern，选择与主导 path 匹配的结构。
 
-在代码层面，DRY 的是结构，不是每一行。类型和数据模型应当收敛。三句相似的语句仍然胜过一个过早的抽象。宁可显式，不要聪明。测行为和边界情况，不数行数。
+在 code 层面，DRY 的是 structure，不是每一行。type 和 data model 应当 converge。三句相似的 statement 仍然胜过一个过早的 abstraction。宁可 explicit，不要 clever。测 behavior 和 edge case，不数 line count。
 
-**并发推论。** 在让多个 actor 共享状态之前，先问「如果另一个 actor 同时修改它，会发生什么？」如果不是「什么都不会」，就隔离。
+**Concurrency corollary。** 在让多个 actor 共享 state 之前，先问「如果另一个 actor 同时修改它，会发生什么？」如果不是「什么都不会」，就 isolate。
 
-**先铺 scaffold。** 如果某样东西对后面每个阶段都有帮助，就先做它。问「后面每个阶段是否会因为它已存在而受益？」CI、linting、test infrastructure 和共享类型都是 scaffold。按 option value 排序：setup 在 feature 之前，test 在 fix 之前。commit 要小、要单一目的。
+**Scaffold first。** 如果某样东西对后面每个 phase 都有帮助，就先做它。问「后面每个 phase 是否会因为它已存在而受益？」CI、linting、test infrastructure 和 shared type 都是 scaffold。按 option value 排序：setup 在 feature 之前，test 在 fix 之前。commit 要小、要 single-purpose。
 
-每一次增量都应当落地一个自洽的抽象，或加深一个已有的抽象。不要把新能力以特例协调的形式散布到各个调用方。
+每一次 increment 都应当落地一个自洽的 abstraction，或加深一个已有的 abstraction。不要把新 capability 以 special-case coordination 的形式散布到各个 caller。
 
-减法在脚手架之前。先删死代码，再打地基。
+subtraction 在 scaffolding 之前。先删 dead code，再打地基。
