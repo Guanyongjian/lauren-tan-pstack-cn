@@ -14,7 +14,7 @@ disable-model-invocation: true
 - 用带类型的模型，而不是松散的参数或反复出现的形状假设。
 - 用 map、registry、lookup table 或 discriminated union，而不是散落各文件的分支。
 - 用 reducer 或 command/event 模型，而不是临时起意的状态修改。
-- 用围绕单一体领域知识组织的模块，而不是按 load、validate、transform、save 这类顺序切分。执行顺序不等于归属。
+- 用围绕单一体量的领域知识组织的模块，而不是按 load、validate、transform、save 这类顺序切分。执行顺序不等于归属。
 - 用一个小模块边界来收拢重复出现的行为、归属或 invariant。
 - 在访问模式需要时，用 queue、cache、index、graph、tree 或归一化集合。
 - 任何其他合适的结构。当没有合适结构时，先把「代码绝不能允许什么」「数据如何被读取」想清楚，再去找恰好能编码这些的结构。
