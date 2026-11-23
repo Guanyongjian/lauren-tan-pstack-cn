@@ -1,23 +1,23 @@
 ---
 name: principle-outcome-oriented-execution
-description: "在有明确阶段边界的计划性重写和迁移期间适用。向目标架构收敛；不要为维持平滑的中间状态而写一次性的兼容代码。"
+description: "在有明确 phase boundary 的 planned rewrite 和 migration 期间适用。向 target architecture converge；不要为维持平滑的 intermediate state 而写一次性的 compatibility code。"
 disable-model-invocation: true
 ---
 
 # Outcome-Oriented Execution（结果导向执行）
 
-优化朝向预期的、可验证的终态，而不是维持平滑的中间状态。
+优化朝向预期的、可验证的 end state，而不是维持平滑的 intermediate state。
 
-**Why:** 让每个中间步骤都完全稳定，往往会制造出临时兼容代码，而这些代码会变成长期债务。向目标架构收敛，并在明确的验证边界上证明正确性。
+**Why:** 让每个 intermediate step 都完全稳定，往往会制造出临时 compatibility code，而这些代码会变成长期 debt。向 target architecture converge，并在明确的 verification boundary 上证明正确性。
 
 **Core rule:**
 
-- 终态完整性优先于过渡期稳定性
-- 中间状态被破坏是可以接受的，前提是它有计划、有范围、可回退
+- end-state integrity 优先于 transitional stability
+- intermediate breakage 是可以接受的，前提是它有计划、有范围、可回退
 
 **Guardrails:**
 
-- 用于有明确阶段边界的计划性重写和迁移
-- 声明哪些地方允许暂时的破坏
-- 迁移期间，对正在改动的区域保留高信号检查
-- 计划完成时要求完整的静态与运行时验证
+- 用于有明确 phase boundary 的 planned rewrite 和 migration
+- 声明哪些地方允许暂时的 breakage
+- migration 期间，对正在改动的区域保留 high-signal check
+- 计划完成时要求完整的 static 与 runtime verification
