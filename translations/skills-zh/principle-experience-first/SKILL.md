@@ -8,7 +8,7 @@ disable-model-invocation: true
 
 当实现便利与用户愉悦冲突时，选愉悦。
 
-- 每个 feature、control、option 都必须能被justify
+- 每个 feature、control、option 都必须能说清理由
 - 少发一点，发好一点（三个打磨过的功能胜过十个粗糙的）
 - 定下来之前先做 prototype（设计决策在一次性 HTML 里比在生产代码里便宜）
 - 把细节做对（transitions、alignment、spacing、feedback、error states）
