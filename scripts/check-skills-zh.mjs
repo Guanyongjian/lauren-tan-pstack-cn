@@ -59,11 +59,18 @@ const zhPathOf = (upstreamRel) => upstreamRel.replace(/^skills\//, "");
 const upstreamPathOf = (zhRel) =>
   existsSync(join(UPSTREAM, "skills", zhRel)) ? `skills/${zhRel}` : zhRel;
 
+// Test-corpus fixtures are captured expected output, not documentation. Translating one would
+// change what the fixture asserts, so they are excluded from the coverage check.
+// Keep this pattern narrow: it must match only statechart's captured report fixtures.
+const TEST_CORPUS_FIXTURE = /^skills\/statechart\/scripts\/test\/corpus\/[^/]+\/report\.md$/;
 // 1. Every upstream doc must have a translated counterpart, and vice versa.
-const sourceFiles = walk(UPSTREAM)
+const upstreamDocs = walk(UPSTREAM)
   .filter((path) => path.endsWith(".md"))
   .map((path) => relative(UPSTREAM, path).split("\\").join("/"))
   .filter((path) => !path.startsWith("docs/guide/") && path !== "README.md");
+
+const skippedFixtures = upstreamDocs.filter((path) => TEST_CORPUS_FIXTURE.test(path));
+const sourceFiles = upstreamDocs.filter((path) => !TEST_CORPUS_FIXTURE.test(path));
 
 const zhFiles = walk(ZH)
   .filter((path) => path.endsWith(".md"))
@@ -134,7 +141,7 @@ for (const path of zhFiles) {
   }
 }
 
-console.log(`upstream: ${sourceFiles.length} files, translations: ${zhFiles.length} files`);
+console.log(`upstream: ${sourceFiles.length} files (${skippedFixtures.length} test-corpus fixtures skipped), translations: ${zhFiles.length} files`);
 for (const problem of problems) console.log(`FAIL ${problem}`);
 console.log(`${problems.length} problems`);
 if (problems.length > 0) process.exit(1);
