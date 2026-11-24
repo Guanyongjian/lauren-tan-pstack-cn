@@ -94,7 +94,11 @@ for (const path of zhFiles) {
   if (path.endsWith("SKILL.md") && declared !== folder) {
     fail(`${path}: frontmatter name is ${JSON.stringify(declared ?? "")}, expected ${folder}`);
   }
-  if (!/^---\n[\s\S]*?\n---\n/.test(text)) fail(`${path}: missing or malformed frontmatter`);
+  // Only a SKILL.md registers as a skill, so only it needs frontmatter. Playbooks and reference
+  // files are plain Markdown upstream and carry none.
+  if (path.endsWith("SKILL.md") && !/^---\n[\s\S]*?\n---\n/.test(text)) {
+    fail(`${path}: missing or malformed frontmatter`);
+  }
 
   // 3. Model IDs, slash commands, tool literals, and code fences must match upstream.
   //    A missing source is already reported by the set comparison above; never skip silently.
