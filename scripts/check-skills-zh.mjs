@@ -128,6 +128,9 @@ for (const path of zhFiles) {
   //    to the upstream source. Resolving to nothing at all is still a failure.
   for (const { 1: href } of text.matchAll(/\]\(<?([^)\s>]+)>?(?:\s+"[^"]*")?\)/g)) {
     if (/^[a-z][a-z0-9+.-]*:/i.test(href)) continue;
+    // Prompt templates show example output, so a sample link such as `[PR #123](url)` is a
+    // placeholder rather than a file reference. Skip an unfilled `{...}` or the bare example token.
+    if (href === "url" || href.includes("{")) continue;
     const target = href.split("#")[0];
     if (!target) continue;
     const goal = (s) => posix.normalize(posix.join(posix.dirname(path), s)).replace(/\/$/, "");
